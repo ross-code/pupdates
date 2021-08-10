@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.username }}'s Dashboard{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Welcome, {{ user.username }}!
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a class="btn-floating btn-large purple pulse" href="{% url 'login' %}">Log In</a> |
+  <a class="btn-floating btn-large indigo pulse" href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+{% endblock %}

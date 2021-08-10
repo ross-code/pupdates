@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Welcome, {{ user.username }}!<hr><br>
+  <a href="{% url 'accounts:dashboard' customuser.username %}">Go to Dashboard <br><i class="small material-icons">dashboard</i><i class="small material-icons">arrow_forward</i></a><br>
+  <p><a href="{% url 'logout' %}">Log Out<br><i class="small material-icons">block</i></a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a class="btn-floating btn-large purple pulse" href="{% url 'login' %}">Log In</a> |
+  <a class="btn-floating btn-large indigo pulse" href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+{% endblock %}
