@@ -8,7 +8,6 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
-    # prepopulated_fields = {'slug': ('username',)}
     list_display = ['email', 'username',]
 
 admin.site.register(CustomUser, CustomUserAdmin)

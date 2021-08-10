@@ -4,8 +4,31 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Welcome, {{ user.username }}!
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
+  <p><h3>{{ user.username|title }}'s Pupdates Dashboard</h3></p>
+  <p><h5>Account Type: Breeder</h4></p>
+  <p><h5>You have 1 registered dog(s).</h5></p>
+  <table>
+      <tr>
+        <th>Name</th>
+        <th>Photo</th>
+        <th>Breed</th>
+        <th>Birthdate</th>
+        <th>Age</th>
+        <th>Weight</th>
+        <th>Height</th>
+      </tr>
+      <tr>
+        <td>Elvis</td>
+        <td>^O^</td>
+        <td>Samoyed mix</td>
+        <td>January 10, 2013</td>
+        <td>8 years old</td>
+        <td>35 pounds</td>
+        <td>20 inches</td>
+      </tr>
+  </table>
+  
+  <p><a href="{% url 'logout' %}">Log Out<br><i class="small material-icons">block</i></a></p>
 {% else %}
   <p>You are not logged in</p>
   <a class="btn-floating btn-large purple pulse" href="{% url 'login' %}">Log In</a> |

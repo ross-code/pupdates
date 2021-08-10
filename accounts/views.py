@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView, DetailView
+from django.shortcuts import get_object_or_404
 from .models import CustomUser
-# from django import models
 
 from .forms import CustomUserCreationForm
 
