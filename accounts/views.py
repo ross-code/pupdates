@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView, DetailView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from .models import CustomUser
 
 from .forms import CustomUserCreationForm
@@ -18,3 +18,6 @@ class AccountDetailView(DetailView):
 
     def get_object(self):
         return get_object_or_404(CustomUser, username=self.kwargs['username'])
+
+# def breeder_view(request):
+#     return render(request, 'breeders.html')

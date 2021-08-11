@@ -10,11 +10,35 @@
   
 </head>
 
-<body class="container card-panel deep-purple lighten-4">
+<body class="card-panel deep-purple lighten-4">
+
+{% comment %} Topnav bar code here {% endcomment %}
+  <nav>
+    <div class="nav-wrapper purple">
+      <a href="{% url 'home' %}" class="brand-logo"><i class="material-icons">home</i></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'accounts:dashboard' user.username %}"><i class="small material-icons">dashboard</i></a></li>
+        <li><a href="{% url 'logout' %}"><i class="small material-icons">exit_to_app</i></a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}"><i class="small material-icons">exit_to_app</i></a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  {% comment %} Sidenav (mobile version) code here {% endcomment %}
+  <ul class="sidenav" id="mobile-demo">
+    {% if user.is_authenticated %}
+    <li><a href="{% url 'accounts:dashboard' user.username %}"><i class="small material-icons">dashboard</i></a></li>
+    <li><a href="{% url 'logout' %}"><i class="material-icons">exit_to_app</i></a></li>
+    {% else %}
+    <li><a href="{% url 'login' %}"><i class="material-icons">exit_to_app</i></a></li>
+    {% endif %}
+  </ul>
 
   <main>
-
-  <a class="center" href="{% url 'home' %}"><h1><i class="large material-icons">home</i> - Pupdates</h1></a>
 
   <div class="center card-panel deep-purple lighten-3">
 
@@ -25,6 +49,49 @@
 
   </main>
 
+{% comment %} FOOTER CODE HERE {% endcomment %}
+        <footer class="white page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l7 s12">
+                <h5 class="purple-text">Earth's Most Puppy-Friendly Adoption Software</h5>
+                <p class="purple-text text-lighten-4">Connecting responsibly bred puppies with loving homes since 2021.</p>
+                <hr>
+                  <a class="purple-text text-lighten-3" href="{% url 'breeders' %}">Breeders - </a> 
+                  <a class="purple-text text-lighten-3" href="{% url 'blog' %}">Blog - </a> 
+                  <a class="purple-text text-lighten-3" href="{% url 'about' %}">About - </a> 
+                  <a class="purple-text text-lighten-3" href="{% url 'contact' %}">Contact - </a>
+                  <a class="purple-text text-lighten-3" href="{% url 'pricing' %}">Pricing</a>
+              </div>
+              <div class="col l3 offset-l2 s12">
+                <h5 class="purple-text">Pupdates</h5>
+                <ul>
+                  {% if user.is_authenticated %}
+                  <li><a class="purple-text text-lighten-3" href="{% url 'accounts:dashboard' user.username %}">Dashboard</a></li>
+                  <li><a class="purple-text text-lighten-3" href="#!">Messages</a></li>
+                  <li><a class="purple-text text-lighten-3" href="#!">Pupfiles(profiles)</a></li>
+                  <li><a class="purple-text text-lighten-3" href="{% url 'logout' %}">Logout</a></li>
+                  {% else %}
+                  <li><a class="purple-text text-lighten-3" href="{% url 'login' %}">Login</a></li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="purple footer-copyright">
+            <div class="container">
+            © 2021 Pupdates
+            <a class="grey-text text-lighten-4 right" href="{% url 'home' %}">Home</a>
+            </div>
+          </div>
+        </footer>
+
+<script> 
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, options);
+  });
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 

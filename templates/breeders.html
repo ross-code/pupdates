@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Breeders using Pupdates{% endblock %}
+
+{% block content %}
+<h3>These breeders from around the world are using Pupdates for their litters.</h3>
+
+<table>
+    <tr>
+        <th>Business:</th>
+        <th>Location:</th>
+        <th>Breeds:</th>
+        <th>Established:</th>
+        {% comment %} <th>Price Range:</th> {% endcomment %}
+        <th>Website:</th>
+        <th>Phone Number:</th>
+    </tr>
+    <tr>
+        <td>Cloud 9 Cockapoos</td>
+        <td>Puyallup, WA, USA</td>
+        <td>Cockapoos (Cocker Spaniel/Poodle)</td>
+        <td>2019</td>
+        {% comment %} <td>Cloud 9 Cockapoos</td> {% endcomment %}
+        <td><a href="https://www.cloud9cockapoos.com/">https://www.cloud9cockapoos.com/</a></td>
+        <td>(555)555-5555</td>
+    </tr>
+</table>
+
+
+
+
+
+{% endblock %}
