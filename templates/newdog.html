@@ -2,12 +2,15 @@
 
 {% load static %}
 
-{% block title %}Pupdates Home{% endblock %}
+{% block title %}Add Dog to Account{% endblock %}
 
 {% block content %}
 {% load static %}<img class="circle" src="{% static "images/winston.jpg" %}" alt="pupdates" /><br>
-{% if user.is_authenticated %}
-  <h4>Welcome, {{ user.username }}!</h4><hr><br>
+{% if user.is_authenticated %} {% comment %} eventually this will check if the user is a breeder account to only allow them access {% endcomment %}
+  <h4>New Dog Page</h4><hr><br>
+  <h5>Add a dog to your profile. Potential puppy parents will be able to 
+  see your dogs and puppies when they are born.</h5>
+
 {% else %}
   <p>You are not logged in</p>
   <div>

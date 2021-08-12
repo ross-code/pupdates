@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}{{ user.username }}'s Dashboard{% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
   <p><h3>{{ user.username|title }}'s Pupdates Dashboard</h3></p>
-  <p><h5>Account Type: {{ user.groups }}</h4></p>
+  <p><h5>Account Type: {{ user.groups }}</h4></p> {% comment %} Figure out how to make this either Puppy Parent or Breeder depending on the user's account Group. {% endcomment %}
   <p><h5>You have 1 registered dog(s).</h5></p>
-
+  <p><a href="{% url 'accounts:newdog' user.username %}"><i class="medium material-icons">add</i><br>Add Dog to your Profile</i></a>
   <table>
       <tr>
         <th>Name</th>

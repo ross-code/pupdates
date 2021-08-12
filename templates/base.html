@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+    {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Pupdates{% endblock %}</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
   
 </head>
 
@@ -15,27 +15,33 @@
 {% comment %} Topnav bar code here {% endcomment %}
   <nav>
     <div class="nav-wrapper purple">
-      <a href="{% url 'home' %}" class="brand-logo"><i class="material-icons">home</i></a>
+      <a href="{% url 'home' %}" class="brand-logo tooltipped purple lighten-1" data-position='right' data-tooltip="Home"><i class="material-icons">home</i></a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         {% if user.is_authenticated %}
-        <li><a href="{% url 'accounts:dashboard' user.username %}"><i class="small material-icons">dashboard</i></a></li>
-        <li><a href="{% url 'logout' %}"><i class="small material-icons">exit_to_app</i></a></li>
+        <li><a href="{% url 'accounts:dashboard' user.username %}" class='btn tooltipped purple lighten-1' data-position='bottom' data-tooltip="Dashboard"><i class="material-icons">dashboard</i></a></li>
+        <li><a href="{% url 'accounts:newdog' user.username %}" class='btn tooltipped purple lighten-1' data-position='bottom' data-tooltip="Add Dog"><i class="material-icons">add</i></a></li>
+        <li><a href="{% url 'inbox' %}" class='btn tooltipped purple lighten-1' data-position='bottom' data-tooltip="Inbox"><i class="material-icons">inbox</i></a></li>
+        <li><a href="{% url 'settings' %}" class='btn tooltipped purple lighten-1' data-position='bottom' data-tooltip="Settings"><i class="material-icons">settings</i></a></li>
+        <li><a href="{% url 'logout' %}" class='btn tooltipped purple lighten-1' data-position='bottom' data-tooltip="Logout"><i class="material-icons">exit_to_app</i></a></li>
         {% else %}
-        <li><a href="{% url 'login' %}"><i class="small material-icons">exit_to_app</i></a></li>
+        <li><a href="{% url 'login' %}" class='btn tooltipped purple lighten-1' data-position='bottom' data-tooltip="Login"><i class="material-icons">exit_to_app</i></a></li>
         {% endif %}
       </ul>
     </div>
   </nav>
 
   {% comment %} Sidenav (mobile version) code here {% endcomment %}
-  <ul class="sidenav" id="mobile-demo">
-    {% if user.is_authenticated %}
-    <li><a href="{% url 'accounts:dashboard' user.username %}"><i class="small material-icons">dashboard</i></a></li>
-    <li><a href="{% url 'logout' %}"><i class="material-icons">exit_to_app</i></a></li>
-    {% else %}
-    <li><a href="{% url 'login' %}"><i class="material-icons">exit_to_app</i></a></li>
-    {% endif %}
+  <ul class="sidenav purple lighten-2" id="mobile-demo">
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'accounts:dashboard' user.username %}"><i class="material-icons">dashboard</i>Dashboard</a></li>
+        <li><a href="{% url 'accounts:newdog' user.username %}"><i class="material-icons">add</i>Add Dog to Profile</a></li>
+        <li><a href="{% url 'inbox' %}"><i class="material-icons">inbox</i>Inbox</a></li>
+        <li><a href="{% url 'settings' %}"><i class="material-icons">settings</i>Settings</a></li>
+        <li><a href="{% url 'logout' %}"><i class="material-icons">exit_to_app</i>Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}"><i class="material-icons">exit_to_app</i>Log In</a></li>
+        {% endif %}
   </ul>
 
   <main>
@@ -86,14 +92,26 @@
           </div>
         </footer>
 
-<script> 
+
+{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems, options);
   });
+</script> {% endcomment %}
+<script type="text/javascript" src="static/js/site.js"></script>
+<script>
+  M.AutoInit();
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, options);
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.tooltipped');
+    var instances = M.Tooltip.init(elems, options);
+  });
 </script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 </body>
 
