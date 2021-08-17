@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}{{ user.username }}'s Dashboard{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <p><h3>{{ user.username|title }}'s Pupdates Dashboard</h3></p>
+  <p><h5>Account Type: {% if user.role == 2 %}<em>Puppy Parent (Adopter) </em>{% elif user.role == 1 %}<em>Breeder </em>{% else %}<em>You have not picked an account type yet. Go to settings to pick an account type.</em>{% endif %}</em></h4></p> {% comment %} Figure out how to make this either Puppy Parent or Breeder depending on the user's account Group. {% endcomment %}
+  <p><h5>You have 1 registered dog(s).</h5></p>
+  <p><a href="{% url 'accounts:newdog' user.username %}"><i class="medium material-icons">add</i><br>Add Dog to your Profile</i></a>
+  <table>
+      <tr>
+        <th>Name</th>
+        <th>Photo</th>
+        <th>Breed</th>
+        <th>Birthdate</th>
+        <th>Age</th>
+        <th>Weight</th>
+        <th>Height</th>
+      </tr>
+      <tr>
+        <td>Elvis</td>
+        <td>^O^</td>
+        <td>Samoyed mix</td>
+        <td>January 10, 2013</td>
+        <td>8 years old</td>
+        <td>35 pounds</td>
+        <td>20 inches</td>
+      </tr>
+  </table>
+
+{% comment %} <div class="fixed-action-btn">
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">mode_edit</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+  </ul>
+</div> {% endcomment %}
+  
+{% else %}
+  <p>You are not logged in</p>
+  <a class="btn-floating btn-large purple pulse" href="{% url 'login' %}">Log In</a> |
+  <a class="btn-floating btn-large indigo pulse" href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+{% endblock %}

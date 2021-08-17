@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Add Dog to Account{% endblock %}
+
+{% block content %}
+{% load static %}<img class="circle" src="{% static "images/winston.jpg" %}" alt="pupdates" /><br>
+{% if user.is_authenticated %} 
+{% comment %} eventually this will check if the user is a breeder account to only allow them access {% endcomment %}
+  <h4>New Dog Page</h4><hr><br>
+  <h5>Add a dog to your profile. Potential puppy parents will be able to 
+  see your dogs and puppies when they are born.</h5>
+  <form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Send</button>
+{% else %}
+  <p>You are not logged in</p>
+  <div>
+    <a class="btn-floating btn-large purple pulse" href="{% url 'login' %}">Log In</a>
+    <i class="medium material-icons">more_horiz</i>
+    <a class="btn-floating btn-large indigo pulse" href="{% url 'accounts:signup' %}">Sign Up</a>
+  </div>
+{% endif %}
+{% endblock %}
