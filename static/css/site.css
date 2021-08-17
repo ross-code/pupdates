@@ -6094,12 +6094,12 @@
   }
   
   select:focus {
-    outline: 1px solid #c9f3ef;
+    outline: 1px solid #b72a9b;
   }
   
   button:focus {
     outline: none;
-    background-color: #2ab7a9;
+    background-color: #b72a9b;
   }
   
   label {

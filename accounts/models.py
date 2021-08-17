@@ -44,8 +44,8 @@ class CustomUser(AbstractUser):
 # Dog model defines the information needed for each dog/puppy
 class Dog(models.Model):
     name = models.CharField(max_length=40)
-    breeder = models.ForeignKey(CustomUser, null=True, on_delete=models.SET_NULL)
-    date_of_birth = models.DateTimeField(auto_now=False)
+    breeder = models.ForeignKey(CustomUser, null=True, on_delete=models.CASCADE)
+    date_of_birth = models.DateField(auto_now=False)
     gender = models.CharField(max_length=6, null=True, choices=GENDER)
     vaccine_status = models.CharField(max_length=20, null=True, choices=VACCINES)
     height = models.IntegerField(default=0)
@@ -54,30 +54,10 @@ class Dog(models.Model):
     coat_type = models.CharField(max_length=40)
     allergies = models.CharField(max_length=100)
     comments = models.CharField(max_length=400)
-    photo = models.ImageField()
+    photo = models.ImageField(upload_to='', height_field=None, width_field=None, blank=True)
 
     def get_absolute_url(self):
         return reverse("dashboard", kwargs={"pk": self.pk})
 
     def __str__(self):
         return self.name
-
-# Puppy model defines the information to build out profiles on 
-# each adoptable Puppy
-# class Puppy(Dog):
-#     name = models.CharField(max_length=40)
-#     breeder = models.ForeignKey(CustomUser, null=True, on_delete=models.SET_NULL)
-#     date_of_birth = models.DateField(auto_now=False)
-#     gender = models.CharField(max_length=6, null=True, choices=GENDER)
-#     vaccine_status = models.CharField(max_length=20, null=True, choices=VACCINES)
-#     height = models.IntegerField(default=0)
-#     weight = models.IntegerField(default=0)
-#     color = models.CharField(max_length=40)
-#     coat_type = models.CharField(max_length=40)
-#     allergies = models.CharField(max_length=100)
-#     comments = models.CharField(max_length=400)
-#     photo = models.ImageField()
-
-#     def __str__(self):
-#         return self.name
-

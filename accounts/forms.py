@@ -9,30 +9,17 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ('username', 'email', 'role')
-        # field_classes = {'role': }
-        # class Meta:
-        # model = User
-        # fields = ("username",)
-        # field_classes = {'username': UsernameField}
-
 
 class CustomUserChangeForm(UserChangeForm):
 
-    password = ReadOnlyPasswordHashField(label='Password', help_text="Please enter your password here.")
+    # password = ReadOnlyPasswordHashField(label='Password', help_text="Please enter your password here.")
 
     class Meta:
         model = CustomUser
-        fields = ('username', 'email')
+        fields = ('username', 'first_name', 'email', 'password')
 
     def clean_password(self):
         return self.initial["password"]
-
-# class CustomUserChangeForm(forms.ModelForm):
-#     password = ReadOnlyPasswordHashField()
-
-#     class Meta:
-#         model = CustomUser
-#         fields = ('email', 'password', 'role')
 
 class DogForm(forms.ModelForm):
     class Meta:

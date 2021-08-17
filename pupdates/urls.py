@@ -20,11 +20,11 @@ from django.views.generic.edit import UpdateView
 from rest_framework import routers
 from accounts import views
 from accounts.views import ContactFormView
-# from accounts import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
+router.register(r'dogs', views.DogViewSet)
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),

@@ -1,5 +1,5 @@
 from django.contrib.auth.models import Group
-from accounts.models import CustomUser
+from accounts.models import CustomUser, Dog
 from rest_framework import serializers
 
 
@@ -14,3 +14,8 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
         fields = ['url', 'name']
+
+class DogSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Dog
+        fields = '__all__'
