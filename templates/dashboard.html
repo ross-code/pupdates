@@ -23,7 +23,7 @@
       </tr>
       <tr v-for="dog in dogs.results">
         <td>[[ dog.name ]]</td>
-        <td>[[ dog.photo ]]</td>
+        <td><img :src='dog.photo' style="width: 30%; border-radius: 50%"></img></td>
         <td>[[ dog.breed ]]</td>
         <td>[[ dog.date_of_birth ]]</td>
         {% comment %} <td>[[ dog.weight ]]</td> {% endcomment %}

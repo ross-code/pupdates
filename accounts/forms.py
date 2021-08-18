@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser, Dog
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.core.mail import send_mail
 
 class CustomUserCreationForm(UserCreationForm):
 
@@ -24,12 +25,15 @@ class CustomUserChangeForm(UserChangeForm):
 class DogForm(forms.ModelForm):
     class Meta:
         model = Dog
-        fields = '__all__'
+        fields = ('name', 'date_of_birth', 'gender', 'vaccine_status', 'height', 'weight', 'color', 'coat_type', 'allergies', 'comments', 'photo')
 
 class ContactForm(forms.Form):
     name = forms.CharField()
-    email = forms.EmailField()
+    subject = forms.CharField()
+    from_email = forms.EmailField()
     message = forms.CharField(widget=forms.Textarea)
+    recipient_list = ['rosszeiger1@gmail.com',]
+    # send_mail(name, subject, from_email, message, recipient_list)
 
-    def send_email(self):
+    def send_mail(self):
         pass

@@ -20,6 +20,9 @@ from django.views.generic.edit import UpdateView
 from rest_framework import routers
 from accounts import views
 from accounts.views import ContactFormView
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
@@ -41,4 +44,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# when deploying beware that DEBUG will break this if DEBUG changed to FALSE
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

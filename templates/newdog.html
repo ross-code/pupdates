@@ -11,10 +11,11 @@
   <h4>New Dog Page</h4><hr><br>
   <h5>Add a dog to your profile. Potential puppy parents will be able to 
   see your dogs and puppies when they are born.</h5>
-  <form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Send</button>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send</button>
+  </form>
 {% else %}
   <p>You are not logged in</p>
   <div>

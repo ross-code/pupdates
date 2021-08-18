@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView, FormView, DeleteView, UpdateView
 from django.views.generic import ListView, DetailView
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import CustomUser, Group, Dog
 from rest_framework import viewsets
 from rest_framework import permissions
@@ -51,6 +51,16 @@ class DogViewSet(viewsets.ModelViewSet):
     serializer_class = DogSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+def dog_image_view(request):
+    if request.method == 'POST':
+        form = DogForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+    else:
+        form = DogForm()
+    return render(request, 'dashboard.html', {'form': form})
+
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
@@ -68,5 +78,5 @@ class ContactFormView(FormView):
     success_url = 'thanks/'
 
     def form_valid(self, form):
-        form.send_email()
+        form.send_mail()
         return super().form_valid(form)

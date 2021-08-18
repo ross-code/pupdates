@@ -142,3 +142,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+#  For email functionality, this needs to be completed
+# EMAIL_HOST = 'smtp.'
+# EMAIL_PORT = #
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
