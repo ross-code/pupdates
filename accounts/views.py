@@ -10,6 +10,8 @@ from django import forms
 from django.forms import ModelForm
 from accounts.forms import ContactForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 # from accounts.models import Dog
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm, DogForm
@@ -20,8 +22,11 @@ class SignUpView(CreateView):
     template_name = 'registration/signup.html'
 
 class UpdateView(LoginRequiredMixin, UpdateView):
+    model = CustomUser
     form_class = CustomUserChangeForm
-    success_url = reverse_lazy('dashboard')
+    # username = User.objects.username
+    success_url = reverse_lazy('dashboard') #HttpResponse('Account updated successfully.') 
+    # success_url = reverse_lazy('dashboard', kwargs={'username': username}) #HttpResponse('Account updated successfully.') 
     template_name = 'change.html'
 
     def get_absolute_url(self):
@@ -69,8 +74,13 @@ class GroupViewSet(viewsets.ModelViewSet):
 class DogCreateView(CreateView):
     model = Dog
     template_name = 'newdog.html'
-    fields = '__all__'
-    success_url = 'home/'
+    fields = ('name', 'date_of_birth', 'gender', 'vaccine_status', 'height', 'weight', 'color', 'coat_type', 'allergies', 'comments', 'photo')
+    # success_url = f'/{request.user.username}' #How can I get this to redirect to dashboard? How do I pass <str:username> as kwargs
+
+    def form_valid(self, form):
+        form.instance.breeder = self.request.user
+        return redirect(f'/accounts/{self.request.user.username}')
+    # better to use a reverse rther than a redirect
 
 class ContactFormView(FormView):
     template_name = 'contact.html'

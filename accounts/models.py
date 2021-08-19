@@ -44,8 +44,8 @@ class CustomUser(AbstractUser):
 # Dog model defines the information needed for each dog/puppy
 class Dog(models.Model):
     name = models.CharField(max_length=40)
-    breeder = models.ForeignKey(CustomUser, null=True, on_delete=models.CASCADE, blank=True)
-    date_of_birth = models.DateField(auto_now=False, blank=True)
+    breeder = models.ForeignKey(CustomUser, related_name='dogs', on_delete=models.CASCADE)
+    date_of_birth = models.DateField()
     gender = models.CharField(max_length=6, null=True, choices=GENDER, blank=True)
     vaccine_status = models.CharField(max_length=20, null=True, choices=VACCINES, blank=True)
     height = models.IntegerField(default=0, blank=True)

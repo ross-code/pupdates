@@ -21,21 +21,29 @@
         <th>Weight</th>
         <th>Height</th>
       </tr>
+      {% comment %} {% for dog in user.dogs.all %} {% endcomment %}
+      {% comment %} <tr> {% endcomment %}
       <tr v-for="dog in dogs.results">
+        {% comment %} <td>{{ dog.name }}</td> {% endcomment %}
         <td>[[ dog.name ]]</td>
         <td><img :src='dog.photo' style="width: 30%; border-radius: 50%"></img></td>
         <td>[[ dog.breed ]]</td>
+        {% comment %} <td>{{ dog.breed }}</td> {% endcomment %}
         <td>[[ dog.date_of_birth ]]</td>
-        {% comment %} <td>[[ dog.weight ]]</td> {% endcomment %}
-        <td>[[ dog.weight ]] pounds</td>
+        {% comment %} <td>{{ dog.date_of_birth }}</td> {% endcomment %}
+        <td>[[ dog.weight ]]</td>
+        {% comment %} <td>[[ dog.weight ]] pounds</td> {% endcomment %}
+        {% comment %} <td>{{ dog.weight }} pounds</td> {% endcomment %}
         <td>[[ dog.height ]] inches</td>
+        {% comment %} <td>{{ dog.height }} inches</td> {% endcomment %}
       </tr>
+        {% comment %} {% endfor %} {% endcomment %}
+  </table>
       <div id="page">
           <button @click="pageprev" id="page-prev" value="prev">Prev Page</button>
           - [[ current_page ]] -
           <button @click="pagenext" id="page-next" value="next">Next Page</button>
       </div>
-  </table>
   </div>
 
 <div class="fixed-action-btn">
@@ -66,25 +74,30 @@
       dogs: [],
       csrf_token: "",
       current_page: '1',
+      error: false,
     },
     methods: {
       loadDogs: function() {
         axios({
           method: 'get',
-          url: '../../dogs/',
+          url: '/dogs/',
           params: {
             page: this.current_page
           },
         }).then(response => {
           this.dogs = response.data
-        })
+          this.error = false
+        }).catch(error => {
+            this.error = true
+        });
       },
       pagenext: function() {
-//        if (error.response.status === 404) {
-//          alert("You are on the last page.")
-//        } else {
+        if (this.error === true) {
+          alert("You are on the last page.")
+        } else {
            this.current_page++,
            this.loadDogs()
+        }
       },
       pageprev: function() {
         if (this.current_page == 1) {

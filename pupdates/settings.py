@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'rest_framework',
+    # 'materialize',
+    'crispy_forms',
+    'crispy_forms_materialize',
 ]
 
 MEDIA_URL = '/media/'
@@ -150,3 +153,5 @@ REST_FRAMEWORK = {
 # EMAIL_HOST_PASSWORD = ''
 # EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = False
+
+CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
