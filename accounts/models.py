@@ -32,7 +32,7 @@ class CustomUser(AbstractUser):
         (PUPPY_PARENT, 'Puppy Parent (Adopter)'),
     )
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True)
-    number_of_dogs = models.PositiveSmallIntegerField(blank=True, null=True)
+    number_of_dogs = models.PositiveSmallIntegerField(default=0, blank=True, null=False)
     # groups = groups.set(models.CharField(max_length=13, null=True, choices=ROLE_CHOICES))
     # add additional fields in here
     def create_user(self, email, first_name, last_name, groups):

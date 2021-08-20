@@ -1,13 +1,14 @@
+{% comment %} This page will be a dog detail/profile view {% endcomment %}
+
 {% extends 'base.html' %}
 
 {% load static %}
 
-{% block title %}{{ user.username }}'s Dashboard{% endblock %}
+{% block title %}{{ dog.name|title }}'s Dashboard{% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
-  <p><h3>{{ user.username|title }}'s Pupdates Dashboard</h3></p>
-  <p><h5><b>Account Type:</b> {% if user.role == 2 %}<em>Puppy Parent (Adopter) </em>{% elif user.role == 1 %}<em>Breeder </em>{% else %}<em>You have not picked an account type yet. Go to settings to pick an account type.</em>{% endif %}</em></h4></p> {% comment %} Figure out how to make this either Puppy Parent or Breeder depending on the user's account Group. {% endcomment %}
+  <p><h3>{{ dog.name|title }}'s Pupdates Dashboard</h3></p>
   <div class='dog-num'>
   {% comment %} <p><h5>You have {% for dog in dogs %} {% if dog.breeder_id == user.id %} dog(s).</h5></p> {% endcomment %}
   <p><h5>You have {{ user.number_of_dogs }} registered dog(s).</h5></p>

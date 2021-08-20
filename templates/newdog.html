@@ -11,9 +11,32 @@
   <h4>New Dog Page</h4><hr><br>
   <h5>Add a dog to your profile. Potential puppy parents will be able to 
   see your dogs and puppies when they are born.</h5>
-  <form method="post" enctype="multipart/form-data">
+  <form action="{% url 'accounts:newdog' user.username %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% comment %} {{ form.as_p }} {% endcomment %}
+    <input type='text' name='name'></input>
+    <input type='text' name='date_of_birth'></input>
+    {% comment %} <input type='text' name='gender'></input> {% endcomment %}
+    <select name='gender'>
+      {% for gender in Gender %}
+        <option value='{{ gender.0 }}'>{{ gender.0 }}</option>
+      {% endfor %}
+    </select>
+    {% comment %} <input type='text' name='vaccine_status'></input> {% endcomment %}
+    
+    <select name='vaccine_status'>
+      {% for vaccine in Vaccines %}
+        <option value='{{ vaccine.0 }}'>{{ vaccine.0 }}</option>
+      {% endfor %}
+    </select>
+
+    <input type='text' name='height'></input>
+    <input type='text' name='weight'></input>
+    <input type='text' name='color'></input>
+    <input type='text' name='coat_type'></input>
+    <input type='text' name='allergies'></input>
+    <input type='text' name='comments'></input>
+    <input type='text' name='photo'></input>
     <button type="submit">Send</button>
   </form>
 {% else %}

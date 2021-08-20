@@ -20,7 +20,7 @@
       <ul class="right hide-on-med-and-down">
         {% if user.is_authenticated %}
         <li><a href="{% url 'accounts:dashboard' user.username %}" class='btn tooltipped purple lighten-1' data-position='bottom' data-tooltip="Dashboard"><i class="material-icons">dashboard</i></a></li>
-        <li><a href="{% url 'accounts:newdog' user.username %}" class='btn tooltipped purple lighten-1' data-position='bottom' data-tooltip="Add Dog"><i class="material-icons">add</i></a></li>
+        <li><a href="{% url 'accounts:newdogform' user.username %}" class='btn tooltipped purple lighten-1' data-position='bottom' data-tooltip="Add Dog"><i class="material-icons">add</i></a></li>
         <li><a href="{% url 'inbox' %}" class='btn tooltipped purple lighten-1' data-position='bottom' data-tooltip="Inbox"><i class="material-icons">inbox</i></a></li>
         <li><a href="{% url 'accounts:update' %}" class='btn tooltipped purple lighten-1' data-position='bottom' data-tooltip="Settings"><i class="material-icons">settings</i></a></li>
         <li><a href="{% url 'logout' %}" class='btn tooltipped purple lighten-1' data-position='bottom' data-tooltip="Logout"><i class="material-icons">exit_to_app</i></a></li>
