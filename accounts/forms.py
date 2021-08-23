@@ -17,7 +17,7 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = CustomUser
-        fields = UserCreationForm.Meta.fields + ('username', 'first_name', 'last_name', 'role', 'email', 'password')
+        fields = UserCreationForm.Meta.fields + ('username', 'first_name', 'last_name', 'role', 'number_of_dogs', 'email',)
 
     # def clean_password(self):
     #     return self.initial["password"]
@@ -26,7 +26,7 @@ class DogForm(forms.ModelForm):
     class Meta:
         model = Dog
         # widgets = {'date_of_birth': DateInput()} # Why won't this work to make the calendar input field?
-        fields = ('name', 'date_of_birth', 'gender', 'vaccine_status', 'height', 'weight', 'color', 'coat_type', 'allergies', 'comments', 'photo')
+        fields = ('name', 'breeder', 'date_of_birth', 'gender', 'vaccine_status', 'height', 'weight', 'color', 'coat_type', 'allergies', 'comments', 'photo')
         # add widgets here
 
 class ContactForm(forms.Form):

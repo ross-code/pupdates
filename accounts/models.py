@@ -10,6 +10,8 @@ GENDER = [
 ]
 
 VACCINES = [
+    ('Up-to-date', 'Up-to-date'),
+    ('Not Up-to-date', 'Not Up-to-date'),
     ('Rabies', 'Rabies'),
     ('Parvo', 'Parvo'),
     ('Distemper', 'Distemper'),
@@ -44,7 +46,7 @@ class CustomUser(AbstractUser):
 # Dog model defines the information needed for each dog/puppy
 class Dog(models.Model):
     name = models.CharField(max_length=40)
-    breeder = models.ForeignKey(CustomUser, related_name='dogs', on_delete=models.CASCADE)
+    breeder = models.ForeignKey(CustomUser, related_name='dogs', on_delete=models.CASCADE, default=None)
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=6, null=True, choices=GENDER, blank=True)
     vaccine_status = models.CharField(max_length=20, null=True, choices=VACCINES, blank=True)

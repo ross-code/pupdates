@@ -19,6 +19,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import UpdateView
 from rest_framework import routers
 from accounts import views
+# from chat import views
 from accounts.views import ContactFormView
 from django.conf import settings
 from django.conf.urls.static import static
@@ -39,8 +40,8 @@ urlpatterns = [
     path('contact/', ContactFormView.as_view(template_name='contact.html'), name='contact'),
     path('thanks/', TemplateView.as_view(template_name='thanks.html'), name='thanks'),
     path('pricing/', TemplateView.as_view(template_name='pricing.html'), name='pricing'),
-    path('settings/', UpdateView.as_view(), name='update'),
-    path('messages/', TemplateView.as_view(template_name='inbox.html'), name='inbox'),
+    # path('messages/', TemplateView.as_view(template_name='inbox.html'), name='inbox'),
+    path('chat/', include('chat.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),

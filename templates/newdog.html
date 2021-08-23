@@ -13,18 +13,18 @@
   see your dogs and puppies when they are born.</h5>
   <form action="{% url 'accounts:newdog' user.username %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {% comment %} {{ form.as_p }} {% endcomment %}
-    <input type='text' name='name'></input>
-    <input type='text' name='date_of_birth'></input>
+    {{ form.as_p }}
+    {% comment %} <input type='text' name='name'></input>
+    <input type='text' name='date_of_birth'></input> {% endcomment %}
     {% comment %} <input type='text' name='gender'></input> {% endcomment %}
-    <select name='gender'>
+    {% comment %} <select name='gender'>
       {% for gender in Gender %}
         <option value='{{ gender.0 }}'>{{ gender.0 }}</option>
       {% endfor %}
-    </select>
+    </select> {% endcomment %}
     {% comment %} <input type='text' name='vaccine_status'></input> {% endcomment %}
     
-    <select name='vaccine_status'>
+    {% comment %} <select name='vaccine_status'>
       {% for vaccine in Vaccines %}
         <option value='{{ vaccine.0 }}'>{{ vaccine.0 }}</option>
       {% endfor %}
@@ -36,8 +36,8 @@
     <input type='text' name='coat_type'></input>
     <input type='text' name='allergies'></input>
     <input type='text' name='comments'></input>
-    <input type='text' name='photo'></input>
-    <button type="submit">Send</button>
+    <input type='text' name='photo'></input>{% endcomment %}
+    <button type="submit">Send</button> 
   </form>
 {% else %}
   <p>You are not logged in</p>

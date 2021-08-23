@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     # 'materialize',
     'crispy_forms',
     'crispy_forms_materialize',
+    'channels',
+    'chat',
 ]
 
 MEDIA_URL = '/media/'
@@ -155,3 +157,24 @@ REST_FRAMEWORK = {
 # EMAIL_USE_SSL = False
 
 CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
+
+# Settings for Chat Functionality (Channels)
+# CHANNEL_LAYERS = {
+#     "default": {
+#     "BACKEND": "asgi_redis.RedisChannelLayer",
+#         "CONFIG": {
+#         "hosts": [(redis_host, 6379)],
+#     },
+#     "ROUTING": "routing.application",
+#    },
+# }
+
+ASGI_APPLICATION = "pupdates.asgi.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}

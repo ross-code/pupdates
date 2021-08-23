@@ -10,35 +10,32 @@
   <p><h5><b>Account Type:</b> {% if user.role == 2 %}<em>Puppy Parent (Adopter) </em>{% elif user.role == 1 %}<em>Breeder </em>{% else %}<em>You have not picked an account type yet. Go to settings to pick an account type.</em>{% endif %}</em></h4></p> {% comment %} Figure out how to make this either Puppy Parent or Breeder depending on the user's account Group. {% endcomment %}
   <div class='dog-num'>
   {% comment %} <p><h5>You have {% for dog in dogs %} {% if dog.breeder_id == user.id %} dog(s).</h5></p> {% endcomment %}
-  <p><h5>You have {{ user.number_of_dogs }} registered dog(s).</h5></p>
+  <p><h5>You have {{ user.number_of_dogs }} dog(s).</h5></p>
   {% csrf_token %}
   <table>
       <tr>
         <th>Name</th>
         <th>Photo</th>
-        <th>Breed</th>
         <th>Birthdate</th>
-        {% comment %} <th>Age</th> {% endcomment %}
         <th>Weight</th>
         <th>Height</th>
       </tr>
-      {% for dog in user.dogs.all %}
+      {% comment %} {% for dog in user.dogs.all %} {% endcomment %}
       <tr>
-      {% comment %} <tr v-for="dog in dogs.results"> {% endcomment %}
-        <td>{{ dog.name }}</td>
-        {% comment %} <td>[[ dog.name ]]</td> {% endcomment %}
-        {% comment %} <td><img :src='dog.photo' style="width: 30%; border-radius: 50%"></img></td> {% endcomment %}
-        {% comment %} <td>[[ dog.breed ]]</td> {% endcomment %}
-        <td>{{ dog.breed }}</td>
-        {% comment %} <td>[[ dog.date_of_birth ]]</td> {% endcomment %}
-        <td>{{ dog.date_of_birth }}</td>
+      <tr v-for="dog in dogs.results">
+        {% comment %} <td>{{ dog.name }}</td> {% endcomment %}
+        <td>[[ dog.name ]]</td>
+        <td><img :src='dog.photo' id='photog'></img></td>
+        {% comment %} <td>{{ dog.photo }}</td> {% endcomment %}
+        <td>[[ dog.date_of_birth ]]</td>
+        {% comment %} <td>{{ dog.date_of_birth }}</td> {% endcomment %}
         {% comment %} <td>[[ dog.weight ]]</td> {% endcomment %}
-        {% comment %} <td>[[ dog.weight ]] pounds</td> {% endcomment %}
-        <td>{{ dog.weight }} pounds</td>
-        {% comment %} <td>[[ dog.height ]] inches</td> {% endcomment %}
-        <td>{{ dog.height }} inches</td>
+        <td>[[ dog.weight ]] pounds</td>
+        {% comment %} <td>{{ dog.weight }} pounds</td> {% endcomment %}
+        <td>[[ dog.height ]] inches</td>
+        {% comment %} <td>{{ dog.height }} inches</td> {% endcomment %}
       </tr>
-        {% endfor %}
+        {% comment %} {% endfor %} {% endcomment %}
   </table>
       <div id="page">
           <button @click="pageprev" id="page-prev" value="prev">Prev Page</button>
@@ -53,7 +50,7 @@
   </a>
   <ul>
     <li><a class="btn-floating purple lighten-4" href="{% url 'accounts:newdog' user.username %}"><i class="medium material-icons">add</i></a></li>
-    <li><a class="btn-floating purple lighten-3" href="{% url 'inbox' %}"><i class="medium material-icons">inbox</i></a></li>
+    <li><a class="btn-floating purple lighten-3" href="{% url 'chat:index' %}"><i class="medium material-icons">inbox</i></a></li>
     <li><a class="btn-floating purple lighten-2" href="{% url 'accounts:update' %}"><i class="medium material-icons">settings</i></a></li>
     <li><a class="btn-floating purple lighten-1" href="{% url 'home' %}"><i class="medium material-icons">home</i></a></li>
   </ul>

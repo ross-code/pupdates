@@ -8,6 +8,7 @@
 {% load static %}<img class="circle" src="{% static "images/winston.jpg" %}" alt="pupdates" /><br>
 {% if user.is_authenticated %}
   <h4>Welcome, {{ user.username }}!</h4><hr><br>
+  <a href="{% url 'accounts:dashboard' user.username %}" class='btn tooltipped purple lighten-1' data-position='bottom' data-tooltip="Dashboard"><i class="material-icons">dashboard</i></a>
 {% else %}
   <p>You are not logged in</p>
   <div>
