@@ -9,6 +9,7 @@ django-on-heroku = "*"
 gunicorn = "*"
 djangorestframework = "*"
 django-crispy-forms = "*"
+crispy-forms-materialize = "*"
 
 [dev-packages]
 

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1fac835cf8f04709152b3421345842b51ef5a1f633a56a6174f47204929b31b4"
+            "sha256": "2cf0a207a0986c318a17c81576fea07584c18cdf9f66336a06adf9d19fa5de10"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -23,6 +23,13 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==3.4.1"
+        },
+        "crispy-forms-materialize": {
+            "hashes": [
+                "sha256:d98696bdd5eee8b009944adec99158ec5579c9f95b8095eb66e93b52a98ef8b2"
+            ],
+            "index": "pypi",
+            "version": "==0.2"
         },
         "dj-database-url": {
             "hashes": [
