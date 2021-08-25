@@ -31,10 +31,15 @@ class UpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.request.user    
 
+# def dog_count(request):
+#     for dog in self.Dog.objects.all():
+#         print(dog)
+
 class AccountDetailView(DetailView):
     model = CustomUser
     template_name = 'dashboard.html'
     context_object_name = 'user_dashboard'
+    # dog_count()
 
     def get_object(self):
         return get_object_or_404(CustomUser, username=self.kwargs['username'])
@@ -60,15 +65,15 @@ class DogViewSet(viewsets.ModelViewSet):
     serializer_class = DogSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-def dog_image_view(request):
-    if request.method == 'POST':
-        form = DogForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('dashboard')
-    else:
-        form = DogForm()
-    return render(request, 'dashboard.html', {'form': form})
+# def dog_image_view(request):
+#     if request.method == 'POST':
+#         form = DogForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('dashboard')
+#     else:
+#         form = DogForm()
+#     return render(request, 'dashboard.html', {'form': form})
 
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()

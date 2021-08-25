@@ -7,9 +7,11 @@
 {% block content %}
 
 <body>
+    <div class='card-panel'>
     Which user would you like to start a chat with?<br>
-    <input id="room-name-input" type="text" size="100" placeholder="Enter a valid username here."><br>
-    <input id="room-name-submit" type="button" value="Enter">
+    <input id="room-name-input" type="text" size="10" placeholder="Enter a valid username here."><br>
+    <input id="room-name-submit" type="button" value="Start Chat">
+    </div>
 
     <script>
         document.querySelector('#room-name-input').focus();
