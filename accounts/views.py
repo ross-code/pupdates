@@ -22,13 +22,8 @@ class SignUpView(CreateView):
 class UpdateView(LoginRequiredMixin, UpdateView):
     model = CustomUser
     form_class = CustomUserChangeForm
-    # username = User.objects.username
-    success_url = reverse_lazy('home') #HttpResponse('Account updated successfully.') 
-    # success_url = reverse_lazy('dashboard', kwargs={'username': username}) #HttpResponse('Account updated successfully.') 
+    success_url = reverse_lazy('home')
     template_name = 'change.html'
-
-    # def success_url(self):
-    #     return reverse_lazy(f'/accounts/{self.request.user.username}')
 
     def get_absolute_url(self):
         return reverse_lazy('home')
@@ -127,6 +122,7 @@ class DogCreateView(CreateView):
         form.instance.breeder = self.request.user
         return redirect(f'/accounts/{self.request.user.username}')
     # better to use a reverse rther than a redirect
+
 
 class ContactFormView(FormView):
     template_name = 'contact.html'

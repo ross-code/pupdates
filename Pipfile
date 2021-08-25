@@ -12,6 +12,7 @@ django-crispy-forms = "*"
 crispy-forms-materialize = "*"
 channels = "*"
 pillow = "*"
+channels-redis = "*"
 
 [dev-packages]
 

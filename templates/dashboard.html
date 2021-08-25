@@ -21,7 +21,7 @@
         <th>Height</th>
       </tr>
       {% comment %} {% for dog in user.dogs.all %} {% endcomment %}
-      <tr>
+      {% comment %} <tr> {% endcomment %}
       <tr v-for="dog in dogs.results">
         {% comment %} <td>{{ dog.name }}</td> {% endcomment %}
         <td>[[ dog.name ]]</td>
