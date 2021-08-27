@@ -13,6 +13,8 @@ crispy-forms-materialize = "*"
 channels = "*"
 pillow = "*"
 channels-redis = "*"
+django-anymail = {extras = ["amazon_ses"], version = "*"}
+boto3 = "*"
 
 [dev-packages]
 

@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from rest_framework import viewsets
 from django.http import HttpResponse
+from django.core.mail import send_mail
 from rest_framework import permissions
 from accounts.forms import ContactForm
 from django.contrib.auth.models import User
@@ -122,12 +123,23 @@ class DogCreateView(CreateView):
     success_url = reverse_lazy('home') #How can I get this to redirect to dashboard? How do I pass <str:username> as kwargs
 
     def form_valid(self, form):
-        # print(form)
+        print(form)
         # print(request.Dog)
-        form.instance.breeder = self.request.user
+        # dog = Dog(id_name=form.name, id_breeder=self.request.user, id_date_of_birth=form.date_of_birth)
+        form.save()
+        # form.instance.breeder = self.request.user
         return redirect(f'/accounts/{self.request.user.username}')
     # better to use a reverse rther than a redirect
 
+
+# send_mail(
+#     'Subject here',
+#     'Here is the message.',
+#     'from@example.com',
+#     ['to@example.com'],
+#     fail_silently=False,
+# )
+# send_mail(name, subject, from_email, message, recipient_list)
 
 class ContactFormView(FormView):
     template_name = 'contact.html'

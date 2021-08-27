@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'crispy_forms_materialize',
     'channels',
     'chat',
+    'anymail',
 ]
 
 MEDIA_URL = '/media/'
@@ -181,3 +182,18 @@ CHANNEL_LAYERS = {
 
 import django_on_heroku
 django_on_heroku.settings(locals())
+
+# ANYMAIL = {
+#     "MAILGUN_API_KEY": "<your Mailgun key>",
+#     "MAILGUN_SENDER_DOMAIN": 'mg.example.com',
+# }
+# EMAIL_BACKEND = "anymail.backends.amazon_ses.EmailBackend"
+# DEFAULT_FROM_EMAIL = 'ross@rosszeiger.com'
+# SERVER_EMAIL = 
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'pupdates.com@gmail.com'
+EMAIL_HOST_PASSWORD = 'w!uJFGWtDiTNoQp^4hR'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'pupdates.com@gmail.com'

@@ -43,7 +43,7 @@
   <p>You are not logged in</p>
   <div>
     <a class="btn-floating btn-large purple pulse" href="{% url 'login' %}">Log In</a>
-    <i class="medium material-icons">more_horiz</i>
+    {% comment %} <i class="medium material-icons">more_horiz</i> {% endcomment %}
     <a class="btn-floating btn-large indigo pulse" href="{% url 'accounts:signup' %}">Sign Up</a>
   </div>
 {% endif %}
